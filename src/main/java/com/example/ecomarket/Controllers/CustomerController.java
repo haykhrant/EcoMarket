@@ -1,6 +1,7 @@
 package com.example.ecomarket.Controllers;
 
 import com.example.ecomarket.DOM.CustomerRequest;
+import com.example.ecomarket.DOM.CustomerResponse;
 import com.example.ecomarket.Services.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<?> register(@RequestBody CustomerRequest request) {
+    public ResponseEntity<CustomerResponse> register(@RequestBody CustomerRequest request) {
         customerService.register(request);
         return new ResponseEntity<>(HttpStatus.CREATED);
         //return ResponseEntity.ok("Hello");
