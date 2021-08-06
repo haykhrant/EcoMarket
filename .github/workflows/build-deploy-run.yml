@@ -44,4 +44,4 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
-          script: sudo systemctl restart my-app.service
+          script: sudo systemctl restart ecomarket-app.service
