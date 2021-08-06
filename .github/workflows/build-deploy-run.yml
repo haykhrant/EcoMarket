@@ -24,6 +24,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
+          password: ${{ secrets.REMOTE_PASSWORD}}
           script: sudo systemctl stop ecomarket-app.service
 
       - name: Copy file via ssh key
