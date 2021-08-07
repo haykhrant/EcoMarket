@@ -37,7 +37,7 @@ jobs:
           strip_components: 1
           target: "/home/ec2-user"
 
-      - name: Start WTF API on server
+      - name: Start EcoMarket API on server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.REMOTE_IP }}
