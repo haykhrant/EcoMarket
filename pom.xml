@@ -50,6 +50,11 @@
             <artifactId>spring-security-crypto</artifactId>
             <version>5.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.7.1</version>
+        </dependency>
     </dependencies>
 
     <build>
