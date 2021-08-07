@@ -3,8 +3,9 @@ package com.example.ecomarket.Converters;
 import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
 import com.example.ecomarket.Facade.DTO.CategoryDTO;
+import com.example.ecomarket.anotations.Converter;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Converter;
 
 @Converter
 public class CategoryConverter {
