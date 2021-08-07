@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
+@CrossOrigin(origins = "http://52.15.67.16:8080")
 public class CategoryController {
 
 
