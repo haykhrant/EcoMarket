@@ -1,7 +1,16 @@
-package com.example.ecomarket.DOM;
+package com.example.ecomarket.Facade.DTO;
 
-public class CategoryRequest {
+public class CategoryDTO {
+    private Long id;
     private String categoryName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCategoryName() {
         return categoryName;
