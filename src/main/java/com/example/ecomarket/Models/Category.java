@@ -14,7 +14,6 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
     private List<ProductType> productTypeList;
 
     public Category() {

@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
-public class CustomerController {
+@CrossOrigin(origins = "https://haykhrant.github.io/frontend/#/")
+public class CustomerController
+{
     public final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {

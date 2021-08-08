@@ -5,19 +5,23 @@ import com.example.ecomarket.DOM.CategoryResponse;
 import com.example.ecomarket.Facade.CategoryFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.ArrayList;
 
-@Controller
-@CrossOrigin(origins = "http://localhost:8080")
+@Component
+@RestController
+@CrossOrigin(origins = "https://haykhrant.github.io/frontend/#/")
 public class CategoryController {
 
 
     private final CategoryFacade categoryFacade;
 
-    public CategoryController(CategoryFacade categoryFacade) {
+    public CategoryController(CategoryFacade categoryFacade)
+    {
         this.categoryFacade = categoryFacade;
     }
 
