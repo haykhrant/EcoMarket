@@ -3,45 +3,68 @@ package com.example.ecomarket.Facade;
 import com.example.ecomarket.Converters.CategoryConverter;
 import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
-import com.example.ecomarket.Services.CategoryService;
+import com.example.ecomarket.Facade.DTO.CategoryDTO;
+import com.example.ecomarket.Services.ICategoryService;
+import com.example.ecomarket.Services.IProductTypeService;
 import com.example.ecomarket.anotations.Facade;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Facade
 public class CategoryFacade {
-    private final CategoryService categoryService;
+    private final ICategoryService iCategoryService;
     private final CategoryConverter categoryConverter;
+    private final IProductTypeService iProductTypeService;
 
-    public CategoryFacade(CategoryService service,CategoryConverter converter)
+    public CategoryFacade(ICategoryService iCategoryService,CategoryConverter categoryConverter,IProductTypeService iProductTypeService)
     {
-        categoryService = service;
-        categoryConverter = converter;
+        this.iCategoryService = iCategoryService;
+        this.iProductTypeService = iProductTypeService;
+        this.categoryConverter = categoryConverter;
     }
 
-    public CategoryResponse create(CategoryRequest request) {
-        return new CategoryResponse();
+    public CategoryResponse create(CategoryRequest request)
+    {
+        return categoryConverter.responseFromDTO(iCategoryService.create(categoryConverter.categoryDTOFromRequest(request)));
     }
 
-    public CategoryResponse getById(Long id) {
-        return new CategoryResponse();
+    public CategoryResponse getById(Long id)
+    {
+        return categoryConverter.responseFromDTO(iCategoryService.getById(id));
     }
 
-    public ArrayList<CategoryResponse> findAll() {
-        return new ArrayList<>();
+    public ArrayList<CategoryResponse> findAll()
+    {
+        ArrayList<CategoryDTO> all = iCategoryService.findAll();
+        List<CategoryResponse> responses = all.stream()
+                .map(each -> categoryConverter.responseFromDTO(each))
+                .collect(Collectors.toList());
+        return (ArrayList<CategoryResponse>) responses;
     }
 
-    public ArrayList<CategoryResponse> findAllByName(String name) {
-        return new ArrayList<>();
+    public ArrayList<CategoryResponse> findAllByName(String name)
+    {
+        ArrayList<CategoryDTO> all = iCategoryService.findAllByName(name);
+        List<CategoryResponse> responseModels = all.stream()
+                .map(each -> categoryConverter.responseFromDTO(each))
+                .collect(Collectors.toList());
+        return (ArrayList<CategoryResponse>) responseModels;
     }
 
-    public CategoryResponse updateById(CategoryRequest request, Long id) {
-        return new CategoryResponse();
+    public CategoryResponse updateById(CategoryRequest request, Long id)
+    {
+        CategoryDTO dto = categoryConverter.categoryDTOFromRequest(request);
+        dto.setId(id);
+        CategoryDTO dataObject = iCategoryService.updateById(dto);
+        return categoryConverter.responseFromDTO(iCategoryService.updateById(dto));
     }
 
-    public void deleteById(Long id) {
-
+    public void deleteById(Long id)
+    {
+        iCategoryService.deleteById(id);
+        CategoryDTO categoryDTO = iCategoryService.getById(id);
+        iProductTypeService.deleteAllByCategory(categoryDTO,categoryDTO.getCategoryName());
     }
 }
