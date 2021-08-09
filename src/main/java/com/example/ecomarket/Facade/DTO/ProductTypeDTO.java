@@ -3,7 +3,6 @@ package com.example.ecomarket.Facade.DTO;
 public class ProductTypeDTO {
     private Long id;
     private String productTypeName;
-    private CategoryDTO categoryDTO;
 
     public Long getId() { return id; }
 
@@ -19,11 +18,4 @@ public class ProductTypeDTO {
         this.productTypeName = productTypeName;
     }
 
-    public CategoryDTO getCategoryDTO() {
-        return categoryDTO;
-    }
-
-    public void setCategoryDTO(CategoryDTO categoryDTO) {
-        this.categoryDTO = categoryDTO;
-    }
 }

@@ -5,11 +5,15 @@ import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
 import com.example.ecomarket.Models.Category;
 import com.example.ecomarket.Models.ProductType;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class GeneralService {
     protected Category buildCategoryFromDto(CategoryDTO dto) {
         Category category = new Category();
         category.setName(dto.getCategoryName());
         category.setId(dto.getId());
+        category.setProductTypeList(dto.getProductTypeDTOS().stream().map(each -> buildProductTypeFromDto(each)).collect(Collectors.toList()));
         return category;
     }
 
@@ -17,14 +21,13 @@ public class GeneralService {
         CategoryDTO dto = new CategoryDTO();
         dto.setId(category.getId());
         dto.setCategoryName(category.getName());
+        dto.setProductTypeDTOS((ArrayList<ProductTypeDTO>) category.getProductTypeList().stream().map(each -> buildDtoFromProductType(each)).collect(Collectors.toList()));
         return dto;
     }
 
     protected ProductType buildProductTypeFromDto(ProductTypeDTO dto) {
         ProductType productType = new ProductType();
         productType.setName(dto.getProductTypeName());
-        productType.setId(dto.getId());
-        productType.setCategory(buildCategoryFromDto(dto.getCategoryDTO()));
         return productType;
     }
 
@@ -32,7 +35,6 @@ public class GeneralService {
         ProductTypeDTO dto = new ProductTypeDTO();
         dto.setId(productType.getId());
         dto.setProductTypeName(productType.getName());
-        dto.setCategoryDTO(buildDtoFromCategory(productType.getCategory()));
         return dto;
     }
 }
