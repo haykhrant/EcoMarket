@@ -13,7 +13,6 @@ public class ProductTypeConverter {
     public ProductTypeDTO productTypeDTOFromRequest(ProductTypeRequest request) {
         ProductTypeDTO productTypeDTO = new ProductTypeDTO();
         productTypeDTO.setProductTypeName(request.getProductTypeName());
-        productTypeDTO.setCategoryDTO(request.getCategoryDTO());
         return productTypeDTO;
     }
 
@@ -21,7 +20,6 @@ public class ProductTypeConverter {
         ProductTypeResponse response = new ProductTypeResponse();
         response.setId(dto.getId());
         response.setProductTypeName(dto.getProductTypeName());
-        response.setCategoryResponse(new CategoryConverter().responseFromDTO(dto.getCategoryDTO()));
         return response;
     }
 }

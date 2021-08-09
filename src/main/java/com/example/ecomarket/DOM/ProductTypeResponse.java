@@ -3,7 +3,6 @@ package com.example.ecomarket.DOM;
 public class ProductTypeResponse {
     private Long id;
     private String productTypeName;
-    private CategoryResponse categoryResponse;
 
     public Long getId() {
         return id;
@@ -21,11 +20,4 @@ public class ProductTypeResponse {
         this.productTypeName = productTypeName;
     }
 
-    public CategoryResponse getCategoryResponse() {
-        return categoryResponse;
-    }
-
-    public void setCategoryResponse(CategoryResponse categoryResponse) {
-        this.categoryResponse = categoryResponse;
-    }
 }
