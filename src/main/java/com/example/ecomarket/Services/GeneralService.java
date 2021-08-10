@@ -28,6 +28,7 @@ public class GeneralService {
     protected ProductType buildProductTypeFromDto(ProductTypeDTO dto) {
         ProductType productType = new ProductType();
         productType.setName(dto.getProductTypeName());
+        productType.setCategory(buildCategoryFromDto(dto.getCategoryDTO()));
         return productType;
     }
 
@@ -35,6 +36,7 @@ public class GeneralService {
         ProductTypeDTO dto = new ProductTypeDTO();
         dto.setId(productType.getId());
         dto.setProductTypeName(productType.getName());
+        dto.setCategoryDTO(buildDtoFromCategory(productType.getCategory()));
         return dto;
     }
 }
