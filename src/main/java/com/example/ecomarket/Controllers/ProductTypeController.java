@@ -1,9 +1,6 @@
 package com.example.ecomarket.Controllers;
 
-import com.example.ecomarket.DOM.CategoryRequest;
-import com.example.ecomarket.DOM.CategoryResponse;
-import com.example.ecomarket.DOM.ProductTypeRequest;
-import com.example.ecomarket.DOM.ProductTypeResponse;
+import com.example.ecomarket.DOM.*;
 import com.example.ecomarket.Facade.ProductTypeFacade;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -24,7 +21,7 @@ public class ProductTypeController {
     }
 
     @PostMapping("/subcategory")
-    public ResponseEntity<ProductTypeResponse> create(@RequestBody ProductTypeRequest request) {
+    public ResponseEntity<ProductTypeResponse> create(@RequestBody CategoryProductTypeRequest request) {
         ProductTypeResponse saved = productTypeFacade.create(request);
         return ResponseEntity.ok(saved);
     }
@@ -43,7 +40,7 @@ public class ProductTypeController {
 
     @GetMapping("/subcategory/name/{id}")
     public ResponseEntity<ArrayList<ProductTypeResponse>> getByCategory(@PathVariable Long id) {
-        ArrayList<ProductTypeResponse> allByName = productTypeFacade.findAllByCategoryId(id);
+        ArrayList<ProductTypeResponse> allByName = productTypeFacade.getProductTypesByCategoryId(id);
         return ResponseEntity.ok(allByName);
     }
 
