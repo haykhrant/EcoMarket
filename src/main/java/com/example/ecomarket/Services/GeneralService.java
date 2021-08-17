@@ -13,7 +13,9 @@ public class GeneralService {
         Category category = new Category();
         category.setName(dto.getCategoryName());
         category.setId(dto.getId());
-        category.setProductTypeList(dto.getProductTypeDTOS().stream().map(each -> buildProductTypeFromDto(each)).collect(Collectors.toList()));
+        if(dto.getProductTypeDTOS() != null && dto.getProductTypeDTOS().size() != 0) {
+            category.setProductTypeList(dto.getProductTypeDTOS().stream().map(each -> buildProductTypeFromDto(each)).collect(Collectors.toList()));
+        }
         return category;
     }
 
@@ -21,14 +23,23 @@ public class GeneralService {
         CategoryDTO dto = new CategoryDTO();
         dto.setId(category.getId());
         dto.setCategoryName(category.getName());
-        dto.setProductTypeDTOS((ArrayList<ProductTypeDTO>) category.getProductTypeList().stream().map(each -> buildDtoFromProductType(each)).collect(Collectors.toList()));
+        if(category.getProductTypeList() != null && category.getProductTypeList().size() != 0) {
+            dto.setProductTypeDTOS((ArrayList<ProductTypeDTO>) category.getProductTypeList()
+                    .stream().map(each -> buildDtoFromProductType(each)).collect(Collectors.toList()));
+        }
         return dto;
     }
 
     protected ProductType buildProductTypeFromDto(ProductTypeDTO dto) {
         ProductType productType = new ProductType();
         productType.setName(dto.getProductTypeName());
-        productType.setCategory(buildCategoryFromDto(dto.getCategoryDTO()));
+        return productType;
+    }
+
+    protected ProductType buildProductTypeFromDtoByCategory(ProductTypeDTO productTypeDTO,CategoryDTO categoryDTO)
+    {
+        ProductType productType = buildProductTypeFromDto(productTypeDTO);
+        productType.setCategory(buildCategoryFromDto(categoryDTO));
         return productType;
     }
 
@@ -36,7 +47,6 @@ public class GeneralService {
         ProductTypeDTO dto = new ProductTypeDTO();
         dto.setId(productType.getId());
         dto.setProductTypeName(productType.getName());
-        dto.setCategoryDTO(buildDtoFromCategory(productType.getCategory()));
         return dto;
     }
 }

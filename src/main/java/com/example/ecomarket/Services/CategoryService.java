@@ -4,6 +4,7 @@ import com.example.ecomarket.Facade.DTO.CategoryDTO;
 import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
 import com.example.ecomarket.Models.Category;
 import com.example.ecomarket.Repositories.ICategoryRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -64,10 +65,9 @@ public class CategoryService  extends GeneralService implements ICategoryService
     }
 
     @Override
-    public void addToList(ProductTypeDTO dto)
+    public void addToList(Long categoryId , ProductTypeDTO productTypeDTO)
     {
-        Category byId = buildCategoryFromDto(dto.getCategoryDTO());
-        byId.getProductTypeList().add(buildProductTypeFromDto(dto));
+        iCategoryRepository.addToList(productTypeDTO.getId(),categoryId);
     }
 
     @Override

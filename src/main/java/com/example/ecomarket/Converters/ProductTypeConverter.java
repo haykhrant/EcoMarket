@@ -13,7 +13,6 @@ public class ProductTypeConverter {
     public ProductTypeDTO productTypeDTOFromRequest(ProductTypeRequest request) {
         ProductTypeDTO productTypeDTO = new ProductTypeDTO();
         productTypeDTO.setProductTypeName(request.getProductTypeName());
-        productTypeDTO.setCategoryDTO(request.getCategoryDTO());
         return productTypeDTO;
     }
 
