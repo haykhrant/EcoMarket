@@ -1,8 +1,11 @@
 package com.example.ecomarket.Services;
 
+import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Facade.DTO.CategoryDTO;
+import com.example.ecomarket.Facade.DTO.ProductDTO;
 import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
 import com.example.ecomarket.Models.Category;
+import com.example.ecomarket.Models.Product;
 import com.example.ecomarket.Models.ProductType;
 
 import java.util.ArrayList;
@@ -48,5 +51,40 @@ public class GeneralService {
         dto.setId(productType.getId());
         dto.setProductTypeName(productType.getName());
         return dto;
+    }
+
+    protected Product buildProductFromDto(ProductDTO productDTO)
+    {
+        ProductType productType = new ProductType();
+        productType.setId(productDTO.getProductTypeResponse().getId());
+        productType.setName(productDTO.getProductTypeResponse().getProductTypeName());
+
+        Product product = new Product();
+        product.setName(productDTO.getName());
+        product.setOwnerComment(productDTO.getOwnerComment());
+        product.setPrice(productDTO.getPrice());
+        product.setRating(productDTO.getRating());
+        product.setProductType(productType);
+        product.setProductDescriptions(productDTO.getProductDescriptions());
+        product.setProductComments(productDTO.getProductComments());
+        return product;
+    }
+
+    protected ProductDTO buildDtoFromProduct(Product product)
+    {
+        ProductTypeResponse productTypeResponse = new ProductTypeResponse();
+        productTypeResponse.setId(product.getId());
+        productTypeResponse.setProductTypeName(product.getName());
+
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
+        productDTO.setName(product.getName());
+        productDTO.setOwnerComment(product.getOwnerComment());
+        productDTO.setPrice(product.getPrice());
+        productDTO.setRating(product.getRating());
+        productDTO.setProductTypeResponse(productTypeResponse);
+        productDTO.setProductDescriptions(product.getProductDescriptions());
+        productDTO.setProductComments(product.getProductComments());
+        return productDTO;
     }
 }

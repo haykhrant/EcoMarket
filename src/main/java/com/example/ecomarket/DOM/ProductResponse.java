@@ -1,51 +1,21 @@
-package com.example.ecomarket.Models;
+package com.example.ecomarket.DOM;
 
-import javax.persistence.*;
+import com.example.ecomarket.Models.ProductComment;
+import com.example.ecomarket.Models.ProductDescription;
+import com.example.ecomarket.Models.ProductType;
+
 import java.util.List;
 
-@Entity
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductResponse {
+
     private Long id;
-
-    @Column(nullable=false)
     private String name;
-
-    @Column(nullable = true)
     private String ownerComment;
-
-    @Column(nullable = false)
     private String price;
-
-    @Column(nullable = true)
     private Double rating;
-
-    @ManyToOne
-    @JoinColumn(name="product_type_id",nullable = false)
-    private ProductType productType;
-
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private ProductTypeResponse productTypeResponse;
     private List<ProductDescription> productDescriptions;
-
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductComment> productComments;
-
-    public void addIntoDescriptions(ProductDescription productDescription){
-        productDescriptions.add(productDescription);
-    }
-
-    public void addIntoComments(ProductComment productComment){
-        productComments.add(productComment);
-    }
-
-    public void deleteFromDescriptions(ProductDescription productDescription){
-        productDescriptions.removeIf(t -> t.getProduct() == productDescription.getProduct());
-    }
-
-    public void deleteFromComments(ProductComment productComment){
-        productDescriptions.removeIf(t -> t.getProduct() == productComment.getProduct());
-    }
 
     public Long getId() {
         return id;
@@ -87,12 +57,12 @@ public class Product {
         this.rating = rating;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public ProductTypeResponse getProductTypeResponse() {
+        return productTypeResponse;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductTypeResponse(ProductTypeResponse productTypeResponse) {
+        this.productTypeResponse = productTypeResponse;
     }
 
     public List<ProductDescription> getProductDescriptions() {
