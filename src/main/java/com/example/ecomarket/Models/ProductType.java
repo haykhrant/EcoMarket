@@ -12,9 +12,7 @@ public class ProductType {
     private String name;
 
     @ManyToOne
-    @JoinTable(name = "category_product_types",
-            joinColumns = @JoinColumn(name = "productType_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
+    @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
     public ProductType() {

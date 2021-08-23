@@ -14,10 +14,13 @@ import java.util.stream.Collectors;
 public class GeneralService {
     protected Category buildCategoryFromDto(CategoryDTO dto) {
         Category category = new Category();
-        category.setName(dto.getCategoryName());
         category.setId(dto.getId());
+        category.setName(dto.getCategoryName());
         if(dto.getProductTypeDTOS() != null && dto.getProductTypeDTOS().size() != 0) {
             category.setProductTypeList(dto.getProductTypeDTOS().stream().map(each -> buildProductTypeFromDto(each)).collect(Collectors.toList()));
+        }
+        else{
+            category.setProductTypeList(new ArrayList<>());
         }
         return category;
     }
@@ -30,12 +33,16 @@ public class GeneralService {
             dto.setProductTypeDTOS((ArrayList<ProductTypeDTO>) category.getProductTypeList()
                     .stream().map(each -> buildDtoFromProductType(each)).collect(Collectors.toList()));
         }
+        else{
+            dto.setProductTypeDTOS(new ArrayList<>());
+        }
         return dto;
     }
 
     protected ProductType buildProductTypeFromDto(ProductTypeDTO dto) {
         ProductType productType = new ProductType();
         productType.setName(dto.getProductTypeName());
+        productType.setCategory(buildCategoryFromDto(dto.getCategoryDTO()));
         return productType;
     }
 
@@ -50,6 +57,7 @@ public class GeneralService {
         ProductTypeDTO dto = new ProductTypeDTO();
         dto.setId(productType.getId());
         dto.setProductTypeName(productType.getName());
+        dto.setCategoryDTO(buildDtoFromCategory(productType.getCategory()));
         return dto;
     }
 

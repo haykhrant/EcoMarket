@@ -67,7 +67,9 @@ public class CategoryService  extends GeneralService implements ICategoryService
     @Override
     public void addToList(Long categoryId , ProductTypeDTO productTypeDTO)
     {
-        iCategoryRepository.addToList(productTypeDTO.getId(),categoryId);
+        Category category = iCategoryRepository.getById(categoryId);
+        category.addIntoProductTypes(buildProductTypeFromDto(productTypeDTO));
+        iCategoryRepository.save(category);
     }
 
     @Override

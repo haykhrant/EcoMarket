@@ -13,7 +13,7 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<ProductType> productTypeList;
 
     public Category() {
@@ -23,6 +23,14 @@ public class Category {
     public Category(String name, List<ProductType> productTypeList) {
         this.name = name;
         this.productTypeList = productTypeList;
+    }
+
+    public void addIntoProductTypes(ProductType productType){
+        productTypeList.add(productType);
+    }
+
+    public void deleteFromProductTypes(ProductType productType){
+        productTypeList.removeIf(t -> t.getCategory() == productType.getCategory());
     }
 
     public Long getId() {

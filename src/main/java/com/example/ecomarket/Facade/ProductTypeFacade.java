@@ -4,6 +4,7 @@ import com.example.ecomarket.Converters.ProductTypeConverter;
 import com.example.ecomarket.DOM.*;
 import com.example.ecomarket.Facade.DTO.CategoryDTO;
 import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
+import com.example.ecomarket.Services.CategoryService;
 import com.example.ecomarket.Services.ICategoryService;
 import com.example.ecomarket.Services.IProductTypeService;
 import com.example.ecomarket.anotations.Facade;
@@ -14,11 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Facade
-@Transactional
 public class ProductTypeFacade {
     private final ICategoryService iCategoryService;
     private final ProductTypeConverter productTypeConverter;
     private final IProductTypeService iProductTypeService;
+
 
     public ProductTypeFacade(ICategoryService iCategoryService,ProductTypeConverter productTypeConverter,
                              IProductTypeService iProductTypeService)
@@ -28,9 +29,11 @@ public class ProductTypeFacade {
         this.productTypeConverter = productTypeConverter;
     }
 
-    public ProductTypeResponse create(CategoryProductTypeRequest request)
+    public ProductTypeResponse create(ProductTypeRequest request)
     {
-        ProductTypeDTO productTypeDTO = iProductTypeService.create(productTypeConverter.productTypeDTOFromRequest(request.getProductTypeRequest()));
+        ProductTypeDTO productTypeDTO =
+                iProductTypeService.create(productTypeConverter.productTypeDTOFromRequest(request,iCategoryService.getById(request.getCategoryId())));
+        CategoryDTO categoryDTO = productTypeDTO.getCategoryDTO();
         iCategoryService.addToList(request.getCategoryId(),productTypeDTO);
         return productTypeConverter.responseFromDTO(productTypeDTO);
     }
@@ -54,7 +57,7 @@ public class ProductTypeFacade {
         return (ArrayList<ProductTypeResponse>)iProductTypeService.getProductTypesByCategoryId(id)
                 .stream().map(each -> productTypeConverter.responseFromDTO(each)).collect(Collectors.toList());
     }
-
+/*
     public ProductTypeResponse updateById(ProductTypeRequest request, Long id)
     {
         ProductTypeDTO dto = productTypeConverter.productTypeDTOFromRequest(request);
@@ -62,7 +65,7 @@ public class ProductTypeFacade {
         ProductTypeDTO dataObject = iProductTypeService.updateById(dto);
         return productTypeConverter.responseFromDTO(iProductTypeService.updateById(dto));
     }
-
+*/
     public void deleteById(Long id)
     {
         iProductTypeService.deleteById(id);
