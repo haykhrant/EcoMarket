@@ -21,7 +21,7 @@ public class ProductTypeController {
     }
 
     @PostMapping("/subcategory")
-    public ResponseEntity<ProductTypeResponse> create(@RequestBody CategoryProductTypeRequest request) {
+    public ResponseEntity<ProductTypeResponse> create(@RequestBody ProductTypeRequest request) {
         ProductTypeResponse saved = productTypeFacade.create(request);
         return ResponseEntity.ok(saved);
     }
@@ -43,13 +43,13 @@ public class ProductTypeController {
         ArrayList<ProductTypeResponse> allByName = productTypeFacade.getProductTypesByCategoryId(id);
         return ResponseEntity.ok(allByName);
     }
-
+/*
     @PutMapping("/subcategory/{id}")
     public ResponseEntity<ProductTypeResponse> updateById(@RequestBody ProductTypeRequest request, @PathVariable Long id){
         ProductTypeResponse updatedById = productTypeFacade.updateById(request, id);
         return ResponseEntity.ok(updatedById);
     }
-
+*/
     @DeleteMapping("/subcategory/{id}")
     public void deleteById(@PathVariable Long id){
         productTypeFacade.deleteById(id);
