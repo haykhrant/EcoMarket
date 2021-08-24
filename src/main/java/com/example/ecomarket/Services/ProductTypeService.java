@@ -43,23 +43,13 @@ public class ProductTypeService extends GeneralService implements IProductTypeSe
         return (ArrayList<ProductTypeDTO>) dataObjects;
     }
 
-    @Override
-    public ArrayList<ProductTypeDTO> findAllByCategoryName(CategoryDTO categoryDTO,String name)
-    {
-        List<ProductTypeDTO> dataObjects = new ArrayList<>();
-        for (ProductType each : iProductTypeRepository
-                .findAllByCategoryAndName(buildCategoryFromDto(categoryDTO), name)) {
-            ProductType productType = buildProductTypeFromDtoByCategory(buildDtoFromProductType(each), categoryDTO);
-            dataObjects.add(buildDtoFromProductType(productType));
-        }
-        return (ArrayList<ProductTypeDTO>) dataObjects;
-    }
 
     @Override
     public ArrayList<ProductTypeDTO> getProductTypesByCategoryId(Long id)
     {
-        return (ArrayList<ProductTypeDTO>)iProductTypeRepository.getProductTypesByCategoryId(id)
-                .stream().map(each -> buildDtoFromProductType(each))
+        return (ArrayList<ProductTypeDTO>)iProductTypeRepository.findAllByCategory_Id(id)
+                .stream()
+                .map(each -> buildDtoFromProductType(each))
                 .collect(Collectors.toList());
     }
 
@@ -76,14 +66,6 @@ public class ProductTypeService extends GeneralService implements IProductTypeSe
     public void deleteById(Long id)
     {
         iProductTypeRepository.deleteById(id);
-    }
-
-    @Override
-    public void deleteAllByCategory(CategoryDTO categoryDTO,String name)
-    {
-        iProductTypeRepository.deleteAll(findAllByCategoryName(categoryDTO,name)
-                .stream().map(each -> buildProductTypeFromDtoByCategory(each,categoryDTO))
-                .collect(Collectors.toList()));
     }
 
 }

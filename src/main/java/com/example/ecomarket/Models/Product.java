@@ -21,31 +21,9 @@ public class Product {
     @Column(nullable = true)
     private Double rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="product_type_id",nullable = false)
     private ProductType productType;
-
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<ProductDescription> productDescriptions;
-
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<ProductComment> productComments;
-
-    public void addIntoDescriptions(ProductDescription productDescription){
-        productDescriptions.add(productDescription);
-    }
-
-    public void addIntoComments(ProductComment productComment){
-        productComments.add(productComment);
-    }
-
-    public void deleteFromDescriptions(ProductDescription productDescription){
-        productDescriptions.removeIf(t -> t.getProduct() == productDescription.getProduct());
-    }
-
-    public void deleteFromComments(ProductComment productComment){
-        productDescriptions.removeIf(t -> t.getProduct() == productComment.getProduct());
-    }
 
     public Long getId() {
         return id;
@@ -93,21 +71,5 @@ public class Product {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
-    }
-
-    public List<ProductDescription> getProductDescriptions() {
-        return productDescriptions;
-    }
-
-    public void setProductDescriptions(List<ProductDescription> productDescriptions) {
-        this.productDescriptions = productDescriptions;
-    }
-
-    public List<ProductComment> getProductComments() {
-        return productComments;
-    }
-
-    public void setProductComments(List<ProductComment> productComments) {
-        this.productComments = productComments;
     }
 }

@@ -11,13 +11,9 @@ public interface IProductTypeService {
 
     ArrayList<ProductTypeDTO> findAll();
 
-    ArrayList<ProductTypeDTO> findAllByCategoryName(CategoryDTO categoryDTO, String name);
-
     ArrayList<ProductTypeDTO> getProductTypesByCategoryId(Long id);
 
     ProductTypeDTO updateById(ProductTypeDTO dto);
 
     void deleteById(Long id);
-
-    void deleteAllByCategory(CategoryDTO categoryDTO,String name);
 }

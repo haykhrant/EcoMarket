@@ -1,8 +1,10 @@
 package com.example.ecomarket.Facade;
 
 import com.example.ecomarket.Converters.CategoryConverter;
+import com.example.ecomarket.Converters.ProductTypeConverter;
 import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
+import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Facade.DTO.CategoryDTO;
 import com.example.ecomarket.Services.ICategoryService;
 import com.example.ecomarket.Services.IProductTypeService;
@@ -16,12 +18,15 @@ import java.util.stream.Collectors;
 public class CategoryFacade {
     private final ICategoryService iCategoryService;
     private final CategoryConverter categoryConverter;
+    private final ProductTypeConverter productTypeConverter;
     private final IProductTypeService iProductTypeService;
 
-    public CategoryFacade(ICategoryService iCategoryService,CategoryConverter categoryConverter,IProductTypeService iProductTypeService)
+    public CategoryFacade(ICategoryService iCategoryService,CategoryConverter categoryConverter,
+                          IProductTypeService iProductTypeService,ProductTypeConverter productTypeConverter)
     {
         this.iCategoryService = iCategoryService;
         this.iProductTypeService = iProductTypeService;
+        this.productTypeConverter = productTypeConverter;
         this.categoryConverter = categoryConverter;
     }
 
@@ -65,6 +70,12 @@ public class CategoryFacade {
     {
         iCategoryService.deleteById(id);
         CategoryDTO categoryDTO = iCategoryService.getById(id);
-        iProductTypeService.deleteAllByCategory(categoryDTO,categoryDTO.getCategoryName());
+    }
+
+    public ArrayList<ProductTypeResponse> getProductTypesBYCategoryId(Long id) {
+        return (ArrayList<ProductTypeResponse>)iProductTypeService.getProductTypesByCategoryId(id)
+                .stream()
+                .map(each -> productTypeConverter.responseFromDTO(each))
+                .collect(Collectors.toList());
     }
 }

@@ -1,9 +1,12 @@
 package com.example.ecomarket.Facade.DTO;
 
+import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Models.ProductComment;
 import com.example.ecomarket.Models.ProductDescription;
 import com.example.ecomarket.Models.ProductType;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDTO {
@@ -13,8 +16,8 @@ public class ProductDTO {
     private String price;
     private Double rating;
     private ProductTypeResponse productTypeResponse;
-    private List<ProductDescription> productDescriptions;
-    private List<ProductComment> productComments;
+    private ArrayList<ProductDescriptionRequest> productDescriptionRequests;
+
 
     public Long getId() {
         return id;
@@ -64,19 +67,11 @@ public class ProductDTO {
         this.productTypeResponse = productTypeResponse;
     }
 
-    public List<ProductDescription> getProductDescriptions() {
-        return productDescriptions;
+    public ArrayList<ProductDescriptionRequest> getProductDescriptionRequests() {
+        return productDescriptionRequests;
     }
 
-    public void setProductDescriptions(List<ProductDescription> productDescriptions) {
-        this.productDescriptions = productDescriptions;
-    }
-
-    public List<ProductComment> getProductComments() {
-        return productComments;
-    }
-
-    public void setProductComments(List<ProductComment> productComments) {
-        this.productComments = productComments;
+    public void setProductDescriptionRequests(ArrayList<ProductDescriptionRequest> productDescriptionRequests) {
+        this.productDescriptionRequests = productDescriptionRequests;
     }
 }

@@ -8,10 +8,9 @@ import com.example.ecomarket.Facade.CategoryFacade;
 import com.example.ecomarket.Facade.ProductFacade;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @Component
 @RestController
@@ -29,4 +28,12 @@ public class ProductController {
         ProductResponse saved = productFacade.create(request);
         return ResponseEntity.ok(saved);
     }
+
+    @GetMapping("/products")
+    public ResponseEntity<ArrayList<ProductResponse>> getAll()
+    {
+        ArrayList<ProductResponse> saved = productFacade.getAll();
+        return ResponseEntity.ok(saved);
+    }
+
 }

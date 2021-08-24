@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Converter
 public class ProductConverter {
 
-    private ProductDescriptionConverter productDescriptionConverter;
+    private ProductDescriptionConverter productDescriptionConverter = new ProductDescriptionConverter();
 
     public ProductDTO productDTOFromRequest(ProductRequest request) {
         ProductDTO productDTO = new ProductDTO();
@@ -21,10 +21,7 @@ public class ProductConverter {
         productDTO.setProductTypeResponse(request.getProductTypeResponse());
         productDTO.setOwnerComment(request.getOwnerComment());
         productDTO.setPrice(request.getPrice());
-        productDTO.setProductDescriptions(request.getProductDescriptions()
-                .stream()
-                .map(each -> productDescriptionConverter.productDescriptionFromRequest(each))
-                .collect(Collectors.toList()));
+        productDTO.setProductDescriptionRequests(request.getDescriptionRequests());
         return productDTO;
     }
 
@@ -36,8 +33,7 @@ public class ProductConverter {
         response.setRating(dto.getRating());
         response.setOwnerComment(dto.getOwnerComment());
         response.setProductTypeResponse(dto.getProductTypeResponse());
-        response.setProductDescriptions(dto.getProductDescriptions());
-        response.setProductComments(dto.getProductComments());
+        response.setProductDescriptionRequestArrayList(dto.getProductDescriptionRequests());
         return response;
     }
 }

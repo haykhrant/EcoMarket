@@ -1,11 +1,14 @@
 package com.example.ecomarket.Services;
 
+import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.Facade.DTO.ProductDTO;
+
+import java.util.ArrayList;
 
 public interface IProductService {
     ProductDTO create(ProductDTO dto);
 
-    void addDescription(ProductDTO dto, String description);
+    ArrayList<ProductDescriptionRequest> getProductDescriptions(Long id);
 
-    void addComment(ProductDTO dto, String comment);
+    ArrayList<ProductDTO> getAll();
 }

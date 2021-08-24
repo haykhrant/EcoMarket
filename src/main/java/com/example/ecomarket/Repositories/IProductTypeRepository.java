@@ -9,6 +9,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.ArrayList;
 
 public interface IProductTypeRepository extends JpaRepository<ProductType, Long> {
-    ArrayList<ProductType> findAllByCategoryAndName(Category category, String name);
-    ArrayList<ProductType> getProductTypesByCategoryId(Long id);
+    ArrayList<ProductType> findAllByCategory_Id(Long id);
 }

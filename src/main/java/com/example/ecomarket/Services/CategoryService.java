@@ -65,26 +65,9 @@ public class CategoryService  extends GeneralService implements ICategoryService
     }
 
     @Override
-    public void addToList(Long categoryId , ProductTypeDTO productTypeDTO)
-    {
-        Category category = iCategoryRepository.getById(categoryId);
-        category.addIntoProductTypes(buildProductTypeFromDto(productTypeDTO));
-        iCategoryRepository.save(category);
-    }
-
-    @Override
     public void deleteById(Long id)
     {
         iCategoryRepository.deleteById(id);
     }
 
-    @Override
-    public void deleteProductTypeFromList(Long categoryId,Long productTypeId){
-        Category byId = iCategoryRepository.getById(categoryId);
-        byId.getProductTypeList().stream()
-                .forEach(each -> {
-                    if(each.getId() == productTypeId)
-                        byId.getProductTypeList().remove(each);
-                });
-    }
 }

@@ -13,7 +13,7 @@ public class ProductDescription {
     @Column(nullable = true)
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id",nullable = false)
     private Product product;
 

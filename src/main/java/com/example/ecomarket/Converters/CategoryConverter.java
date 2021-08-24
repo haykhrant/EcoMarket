@@ -22,15 +22,6 @@ public class CategoryConverter {
         CategoryResponse response = new CategoryResponse();
         response.setId(dto.getId());
         response.setCategoryName(dto.getCategoryName());
-        if(dto.getProductTypeDTOS() != null) {
-            response.setProductTypeResponses((ArrayList<ProductTypeResponse>)
-                    dto.getProductTypeDTOS().stream()
-                            .map(each -> new ProductTypeConverter().responseFromDTO(each))
-                            .collect(Collectors.toList()));
-        }
-        else {
-            response.setProductTypeResponses(new ArrayList<ProductTypeResponse>());
-        }
         return response;
     }
 }
