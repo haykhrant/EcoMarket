@@ -1,11 +1,13 @@
 package com.example.ecomarket.Services;
 
+import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Facade.DTO.CategoryDTO;
 import com.example.ecomarket.Facade.DTO.ProductDTO;
 import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
 import com.example.ecomarket.Models.Category;
 import com.example.ecomarket.Models.Product;
+import com.example.ecomarket.Models.ProductDescription;
 import com.example.ecomarket.Models.ProductType;
 
 import java.util.ArrayList;
@@ -16,12 +18,6 @@ public class GeneralService {
         Category category = new Category();
         category.setId(dto.getId());
         category.setName(dto.getCategoryName());
-        if(dto.getProductTypeDTOS() != null && dto.getProductTypeDTOS().size() != 0) {
-            category.setProductTypeList(dto.getProductTypeDTOS().stream().map(each -> buildProductTypeFromDto(each)).collect(Collectors.toList()));
-        }
-        else{
-            category.setProductTypeList(new ArrayList<>());
-        }
         return category;
     }
 
@@ -29,13 +25,6 @@ public class GeneralService {
         CategoryDTO dto = new CategoryDTO();
         dto.setId(category.getId());
         dto.setCategoryName(category.getName());
-        if(category.getProductTypeList() != null && category.getProductTypeList().size() != 0) {
-            dto.setProductTypeDTOS((ArrayList<ProductTypeDTO>) category.getProductTypeList()
-                    .stream().map(each -> buildDtoFromProductType(each)).collect(Collectors.toList()));
-        }
-        else{
-            dto.setProductTypeDTOS(new ArrayList<>());
-        }
         return dto;
     }
 
@@ -73,8 +62,6 @@ public class GeneralService {
         product.setPrice(productDTO.getPrice());
         product.setRating(productDTO.getRating());
         product.setProductType(productType);
-        product.setProductDescriptions(productDTO.getProductDescriptions());
-        product.setProductComments(productDTO.getProductComments());
         return product;
     }
 
@@ -91,8 +78,18 @@ public class GeneralService {
         productDTO.setPrice(product.getPrice());
         productDTO.setRating(product.getRating());
         productDTO.setProductTypeResponse(productTypeResponse);
-        productDTO.setProductDescriptions(product.getProductDescriptions());
-        productDTO.setProductComments(product.getProductComments());
         return productDTO;
+    }
+
+    protected ProductDescription buildProductDescriptionFromRequest(ProductDescriptionRequest request){
+        ProductDescription productDescription = new ProductDescription();
+        productDescription.setDescription(request.getDescription());
+        return productDescription;
+    }
+
+    protected ProductDescriptionRequest buildRequestFromProductDescription(ProductDescription productDescription){
+        ProductDescriptionRequest productDescriptionRequest = new ProductDescriptionRequest();
+        productDescriptionRequest.setDescription(productDescription.getDescription());
+        return productDescriptionRequest;
     }
 }

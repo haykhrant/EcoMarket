@@ -32,4 +32,11 @@ public class ProductTypeConverter {
         response.setProductTypeName(dto.getProductTypeName());
         return response;
     }
+
+    public ProductTypeResponse responseFromModel(ProductType productType){
+        ProductTypeResponse response = new ProductTypeResponse();
+        response.setId(productType.getId());
+        response.setProductTypeName(productType.getName());
+        return response;
+    }
 }

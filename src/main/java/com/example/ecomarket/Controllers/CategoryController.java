@@ -2,6 +2,7 @@ package com.example.ecomarket.Controllers;
 
 import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
+import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Facade.CategoryFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,12 @@ public class CategoryController {
     @GetMapping("/categories")
     public ResponseEntity<ArrayList<CategoryResponse>> getAll() {
         ArrayList<CategoryResponse> all = categoryFacade.findAll();
+        return ResponseEntity.ok(all);
+    }
+
+    @GetMapping("/category/{id}/subcategories")
+    public ResponseEntity<ArrayList<ProductTypeResponse>> getProductTypesBYCategoryId(@PathVariable Long id) {
+        ArrayList<ProductTypeResponse> all = categoryFacade.getProductTypesBYCategoryId(id);
         return ResponseEntity.ok(all);
     }
 

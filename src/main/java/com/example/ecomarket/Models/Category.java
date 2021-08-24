@@ -13,24 +13,10 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<ProductType> productTypeList;
-
-    public Category() {
-        productTypeList = new ArrayList<>();
-    }
+    public Category() {}
 
     public Category(String name, List<ProductType> productTypeList) {
         this.name = name;
-        this.productTypeList = productTypeList;
-    }
-
-    public void addIntoProductTypes(ProductType productType){
-        productTypeList.add(productType);
-    }
-
-    public void deleteFromProductTypes(ProductType productType){
-        productTypeList.removeIf(t -> t.getCategory() == productType.getCategory());
     }
 
     public Long getId() {
@@ -47,13 +33,5 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<ProductType> getProductTypeList() {
-        return productTypeList;
-    }
-
-    public void setProductTypeList(List<ProductType> productTypeList) {
-        this.productTypeList = productTypeList;
     }
 }

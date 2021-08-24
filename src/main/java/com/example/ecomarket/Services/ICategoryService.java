@@ -16,9 +16,5 @@ public interface ICategoryService {
 
     CategoryDTO updateById(CategoryDTO dto);
 
-    void addToList(Long categoryId , ProductTypeDTO productTypeDTO);
-
     void deleteById(Long id);
-
-    void deleteProductTypeFromList(Long categoryId,Long productTypeId);
 }

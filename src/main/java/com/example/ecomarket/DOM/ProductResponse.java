@@ -4,6 +4,7 @@ import com.example.ecomarket.Models.ProductComment;
 import com.example.ecomarket.Models.ProductDescription;
 import com.example.ecomarket.Models.ProductType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductResponse {
@@ -14,8 +15,7 @@ public class ProductResponse {
     private String price;
     private Double rating;
     private ProductTypeResponse productTypeResponse;
-    private List<ProductDescription> productDescriptions;
-    private List<ProductComment> productComments;
+    private ArrayList<ProductDescriptionRequest> productDescriptionRequestArrayList;
 
     public Long getId() {
         return id;
@@ -65,19 +65,11 @@ public class ProductResponse {
         this.productTypeResponse = productTypeResponse;
     }
 
-    public List<ProductDescription> getProductDescriptions() {
-        return productDescriptions;
+    public ArrayList<ProductDescriptionRequest> getProductDescriptionRequestArrayList() {
+        return productDescriptionRequestArrayList;
     }
 
-    public void setProductDescriptions(List<ProductDescription> productDescriptions) {
-        this.productDescriptions = productDescriptions;
-    }
-
-    public List<ProductComment> getProductComments() {
-        return productComments;
-    }
-
-    public void setProductComments(List<ProductComment> productComments) {
-        this.productComments = productComments;
+    public void setProductDescriptionRequestArrayList(ArrayList<ProductDescriptionRequest> productDescriptionRequestArrayList) {
+        this.productDescriptionRequestArrayList = productDescriptionRequestArrayList;
     }
 }

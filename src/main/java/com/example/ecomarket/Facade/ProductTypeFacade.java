@@ -33,8 +33,6 @@ public class ProductTypeFacade {
     {
         ProductTypeDTO productTypeDTO =
                 iProductTypeService.create(productTypeConverter.productTypeDTOFromRequest(request,iCategoryService.getById(request.getCategoryId())));
-        CategoryDTO categoryDTO = productTypeDTO.getCategoryDTO();
-        iCategoryService.addToList(request.getCategoryId(),productTypeDTO);
         return productTypeConverter.responseFromDTO(productTypeDTO);
     }
 
