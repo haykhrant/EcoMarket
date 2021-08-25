@@ -1,5 +1,6 @@
 package com.example.ecomarket.Controllers;
 
+import com.example.ecomarket.DOM.CategoryProductTypesResponse;
 import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
 import com.example.ecomarket.DOM.ProductTypeResponse;
@@ -39,8 +40,8 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
-    public ResponseEntity<ArrayList<CategoryResponse>> getAll() {
-        ArrayList<CategoryResponse> all = categoryFacade.findAll();
+    public ResponseEntity<ArrayList<CategoryProductTypesResponse>> getAll() {
+        ArrayList<CategoryProductTypesResponse> all = categoryFacade.findAll();
         return ResponseEntity.ok(all);
     }
 
