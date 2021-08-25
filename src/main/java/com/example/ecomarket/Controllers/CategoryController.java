@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @Component
 @RestController
-@CrossOrigin(origins = "http://localhost:8080" )
+@CrossOrigin(origins = "*" )
 public class CategoryController {
 
 
