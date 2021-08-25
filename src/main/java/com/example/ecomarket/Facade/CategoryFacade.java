@@ -2,6 +2,7 @@ package com.example.ecomarket.Facade;
 
 import com.example.ecomarket.Converters.CategoryConverter;
 import com.example.ecomarket.Converters.ProductTypeConverter;
+import com.example.ecomarket.DOM.CategoryProductTypesResponse;
 import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
 import com.example.ecomarket.DOM.ProductTypeResponse;
@@ -40,13 +41,29 @@ public class CategoryFacade {
         return categoryConverter.responseFromDTO(iCategoryService.getById(id));
     }
 
-    public ArrayList<CategoryResponse> findAll()
+    public ArrayList<CategoryProductTypesResponse> findAll()
     {
-        ArrayList<CategoryDTO> all = iCategoryService.findAll();
-        List<CategoryResponse> responses = all.stream()
+        List<CategoryResponse> responses = iCategoryService.findAll()
+                .stream()
                 .map(each -> categoryConverter.responseFromDTO(each))
                 .collect(Collectors.toList());
-        return (ArrayList<CategoryResponse>) responses;
+
+        ArrayList<CategoryProductTypesResponse> categoryProductTypesResponses = new ArrayList<>(responses.size());
+
+        categoryProductTypesResponses.stream().map(each -> each = new CategoryProductTypesResponse());
+
+        for(int i = 0 ; i < responses.size() ; i++) {
+            CategoryProductTypesResponse any = new CategoryProductTypesResponse();
+            any.setCategoryResponse(responses.get(i));
+            any.setProductTypeResponses(
+                    (ArrayList<ProductTypeResponse>) iProductTypeService.getProductTypesByCategoryId(responses.get(i).getId())
+                            .stream()
+                            .map(each -> productTypeConverter.responseFromDTO(each))
+                            .collect(Collectors.toList())
+            );
+            categoryProductTypesResponses.add(any);
+        }
+        return categoryProductTypesResponses;
     }
 
     public ArrayList<CategoryResponse> findAllByName(String name)
