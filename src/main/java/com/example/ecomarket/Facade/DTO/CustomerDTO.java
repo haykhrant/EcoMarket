@@ -1,36 +1,23 @@
-package com.example.ecomarket.Models;
+package com.example.ecomarket.Facade.DTO;
 
-import javax.persistence.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Entity
-@Table(name="customer")
-public class Customer {
+public class CustomerDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
     private Long id;
 
     private String fullname;
 
-    @Column(unique = true)
     private String username;
 
-    @Column
     private String password;
 
-    @Column
     private String role;
 
-    public Customer() {
-    }
 
-    public Customer(Long id, String fullname, String username, String password, String role) {
-        this.id = id;
-        this.fullname = fullname;
-        this.username = username;
-        this.password = password;
-        this.role = "USER";
-    }
+
+    //region Getters and Setters
 
     public Long getId() {
         return id;
@@ -61,7 +48,7 @@ public class Customer {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = bCryptPasswordEncoder.encode(password);
     }
 
     public String getRole() {
@@ -71,4 +58,7 @@ public class Customer {
     public void setRole(String role) {
         this.role = "USER";
     }
+
+    //endregion
+
 }
