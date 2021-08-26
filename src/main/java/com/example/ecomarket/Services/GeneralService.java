@@ -1,14 +1,12 @@
 package com.example.ecomarket.Services;
 
+import com.example.ecomarket.DOM.ProductCommentRequest;
 import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Facade.DTO.CategoryDTO;
 import com.example.ecomarket.Facade.DTO.ProductDTO;
 import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
-import com.example.ecomarket.Models.Category;
-import com.example.ecomarket.Models.Product;
-import com.example.ecomarket.Models.ProductDescription;
-import com.example.ecomarket.Models.ProductType;
+import com.example.ecomarket.Models.*;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -91,5 +89,11 @@ public class GeneralService {
         ProductDescriptionRequest productDescriptionRequest = new ProductDescriptionRequest();
         productDescriptionRequest.setDescription(productDescription.getDescription());
         return productDescriptionRequest;
+    }
+
+    protected ProductCommentRequest buildRequestFromProductComment(ProductComment productComment){
+        ProductCommentRequest productCommentRequest = new ProductCommentRequest();
+        productCommentRequest.setComment(productComment.getComment());
+        return productCommentRequest;
     }
 }

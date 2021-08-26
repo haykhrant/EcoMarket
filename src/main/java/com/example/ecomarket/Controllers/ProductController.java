@@ -1,9 +1,6 @@
 package com.example.ecomarket.Controllers;
 
-import com.example.ecomarket.DOM.CategoryRequest;
-import com.example.ecomarket.DOM.CategoryResponse;
-import com.example.ecomarket.DOM.ProductRequest;
-import com.example.ecomarket.DOM.ProductResponse;
+import com.example.ecomarket.DOM.*;
 import com.example.ecomarket.Facade.CategoryFacade;
 import com.example.ecomarket.Facade.ProductFacade;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +30,12 @@ public class ProductController {
     public ResponseEntity<ArrayList<ProductResponse>> getAll()
     {
         ArrayList<ProductResponse> saved = productFacade.getAll();
+        return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/product/{id}/comment")
+    public ResponseEntity<ProductResponse> comment(@RequestBody ProductCommentRequest request) {
+            ProductResponse saved = productFacade.comment(request);
         return ResponseEntity.ok(saved);
     }
 

@@ -1,10 +1,13 @@
 package com.example.ecomarket.Facade;
 
+import com.example.ecomarket.Converters.ProductCommentConverter;
 import com.example.ecomarket.Converters.ProductConverter;
+import com.example.ecomarket.DOM.ProductCommentRequest;
 import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductRequest;
 import com.example.ecomarket.DOM.ProductResponse;
 import com.example.ecomarket.Facade.DTO.ProductDTO;
+import com.example.ecomarket.Models.ProductComment;
 import com.example.ecomarket.Repositories.IProductRepository;
 import com.example.ecomarket.Services.IProductService;
 import com.example.ecomarket.anotations.Facade;
@@ -19,11 +22,14 @@ public class ProductFacade {
     private final IProductRepository iProductRepository;
     private final IProductService iProductService;
     private final ProductConverter productConverter;
+    private final ProductCommentConverter productCommentConverter;
 
-    public ProductFacade(IProductRepository iProductRepository,IProductService iProductService,ProductConverter productConverter){
+    public ProductFacade(IProductRepository iProductRepository,IProductService iProductService,ProductConverter productConverter,
+                         ProductCommentConverter productCommentConverter){
         this.iProductRepository = iProductRepository;
         this.iProductService = iProductService;
         this.productConverter = productConverter;
+        this.productCommentConverter = productCommentConverter;
     }
 
     public ProductResponse create(ProductRequest request)
@@ -40,8 +46,10 @@ public class ProductFacade {
                 .collect(Collectors.toList());
     }
 
-    public ArrayList<ProductDescriptionRequest> getProductDescriptionRequests(Long id)
+    public ProductResponse comment(ProductCommentRequest request)
     {
-        return iProductService.getProductDescriptions(id);
+        ProductComment productComment = productCommentConverter.productCommentFromRequest(request);
+        ProductDTO productDTO = iProductService.comment(productComment,iProductService.getById(request.getProductId()));
+        return productConverter.responseFromDTO(productDTO);
     }
 }
