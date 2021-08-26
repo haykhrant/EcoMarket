@@ -1,5 +1,7 @@
 package com.example.ecomarket.Facade.DTO;
 
+import com.example.ecomarket.DOM.CustomerRequest;
+import com.example.ecomarket.DOM.ProductCommentRequest;
 import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Models.ProductComment;
@@ -17,8 +19,9 @@ public class ProductDTO {
     private Double rating;
     private ProductTypeResponse productTypeResponse;
     private ArrayList<ProductDescriptionRequest> productDescriptionRequests;
+    private ArrayList<ProductCommentRequest> productCommentRequests;
 
-
+    //region Getters and Setters
     public Long getId() {
         return id;
     }
@@ -74,4 +77,13 @@ public class ProductDTO {
     public void setProductDescriptionRequests(ArrayList<ProductDescriptionRequest> productDescriptionRequests) {
         this.productDescriptionRequests = productDescriptionRequests;
     }
+
+    public ArrayList<ProductCommentRequest> getProductCommentRequests() {
+        return productCommentRequests;
+    }
+
+    public void setProductCommentRequests(ArrayList<ProductCommentRequest> productCommentRequests) {
+        this.productCommentRequests = productCommentRequests;
+    }
+    //endregion
 }

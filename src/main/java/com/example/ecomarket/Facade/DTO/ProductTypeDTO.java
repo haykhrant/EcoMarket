@@ -7,6 +7,7 @@ public class ProductTypeDTO {
     private String productTypeName;
     private CategoryDTO categoryDTO;
 
+    //region Getters and Setters
     public Long getId() { return id; }
 
     public void setId(Long id) {
@@ -28,4 +29,5 @@ public class ProductTypeDTO {
     public void setCategoryDTO(CategoryDTO categoryDTO) {
         this.categoryDTO = categoryDTO;
     }
+    //endregion
 }

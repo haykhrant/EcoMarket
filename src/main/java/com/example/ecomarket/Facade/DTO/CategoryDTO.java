@@ -8,6 +8,7 @@ public class CategoryDTO {
     private Long id;
     private String categoryName;
 
+    //region Getters and Setters
     public Long getId()
     {
         return id;
@@ -27,4 +28,5 @@ public class CategoryDTO {
     {
         this.categoryName = categoryName;
     }
+    //region Getters and Setters
 }
