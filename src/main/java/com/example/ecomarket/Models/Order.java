@@ -13,11 +13,11 @@ public class Order {
     @Column(nullable = false)
     private String contactNumber;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id",nullable = false)
-    private Customer customer;
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_info_id",nullable = false)
+    private CustomerInfo customerInfo;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "adress_id",nullable = false)
     private Adress adress;
 }

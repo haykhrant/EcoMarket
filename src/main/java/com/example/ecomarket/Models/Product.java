@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,10 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="product_type_id",nullable = false)
     private ProductType productType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="customer_info_id",nullable = false)
+    private CustomerInfo customerInfo;
 
     public Long getId() {
         return id;
@@ -71,5 +76,13 @@ public class Product {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    public CustomerInfo getCustomerInfo() {
+        return customerInfo;
+    }
+
+    public void setCustomerInfo(CustomerInfo customerInfo) {
+        this.customerInfo = customerInfo;
     }
 }
