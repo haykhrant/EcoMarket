@@ -3,6 +3,7 @@ package com.example.ecomarket.Models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "adresses")
 public class Adress {
 
     @Id
