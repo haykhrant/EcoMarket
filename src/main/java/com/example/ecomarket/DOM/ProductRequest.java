@@ -14,6 +14,7 @@ public class ProductRequest {
     private ProductTypeResponse productTypeResponse;
     private ArrayList<ProductDescriptionRequest> descriptionRequests;
 
+    //region Getters and Setters
     public String getName() {
         return name;
     }
@@ -53,4 +54,5 @@ public class ProductRequest {
     public void setDescriptionRequests(ArrayList<ProductDescriptionRequest> descriptionRequests) {
         this.descriptionRequests = descriptionRequests;
     }
+    //endregion
 }

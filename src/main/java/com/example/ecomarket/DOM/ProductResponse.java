@@ -16,6 +16,7 @@ public class ProductResponse {
     private Double rating;
     private ProductTypeResponse productTypeResponse;
     private ArrayList<ProductDescriptionRequest> productDescriptionRequestArrayList;
+    private ArrayList<ProductCommentRequest> productCommentRequestArrayList;
 
     public Long getId() {
         return id;
@@ -71,5 +72,13 @@ public class ProductResponse {
 
     public void setProductDescriptionRequestArrayList(ArrayList<ProductDescriptionRequest> productDescriptionRequestArrayList) {
         this.productDescriptionRequestArrayList = productDescriptionRequestArrayList;
+    }
+
+    public ArrayList<ProductCommentRequest> getProductCommentRequestArrayList() {
+        return productCommentRequestArrayList;
+    }
+
+    public void setProductCommentRequestArrayList(ArrayList<ProductCommentRequest> productCommentRequestArrayList) {
+        this.productCommentRequestArrayList = productCommentRequestArrayList;
     }
 }

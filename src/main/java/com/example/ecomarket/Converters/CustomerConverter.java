@@ -19,13 +19,13 @@ public class CustomerConverter {
     }
 
     public CustomerResponse buildResponseFromDTO(CustomerDTO customerDTO) {
-        CustomerResponse customerResponseModel = new CustomerResponse();
-        customerResponseModel.setId(customerDTO.getId());
-        customerResponseModel.setFullname(customerDTO.getFullname());
-        customerResponseModel.setUsername(customerDTO.getUsername());
-        customerResponseModel.setRole("USER");
+        CustomerResponse customerResponse = new CustomerResponse();
+        customerResponse.setId(customerDTO.getId());
+        customerResponse.setFullname(customerDTO.getFullname());
+        customerResponse.setUsername(customerDTO.getUsername());
+        customerResponse.setRole("USER");
 
-        return customerResponseModel;
+        return customerResponse;
     }
 
 }

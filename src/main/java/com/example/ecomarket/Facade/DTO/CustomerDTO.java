@@ -16,7 +16,6 @@ public class CustomerDTO {
     private String role;
 
 
-
     //region Getters and Setters
 
     public Long getId() {

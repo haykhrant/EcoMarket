@@ -18,7 +18,5 @@ public interface ICustomerService {
 
     void deleteById(Long id);
 
-    Customer customerFromDTO(CustomerDTO customerDTO);
 
-    CustomerDTO dtoFromCustomer(Customer customer);
 }
