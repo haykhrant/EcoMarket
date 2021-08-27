@@ -21,8 +21,9 @@ public class CustomerInfo {
 
     @OneToOne
     @JoinColumn(name = "adress_id",nullable = false)
-    private Adress adress;
+    private Address address;
 
+    //region Getters and Setters
     public Long getId() {
         return id;
     }
@@ -55,11 +56,12 @@ public class CustomerInfo {
         this.customer = customer;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAdress(Address address) {
+        this.address = address;
     }
+//endregion
 }
