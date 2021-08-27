@@ -3,9 +3,7 @@ package com.example.ecomarket.Services;
 import com.example.ecomarket.DOM.ProductCommentRequest;
 import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
-import com.example.ecomarket.Facade.DTO.CategoryDTO;
-import com.example.ecomarket.Facade.DTO.ProductDTO;
-import com.example.ecomarket.Facade.DTO.ProductTypeDTO;
+import com.example.ecomarket.Facade.DTO.*;
 import com.example.ecomarket.Models.*;
 
 import java.util.ArrayList;
@@ -95,5 +93,47 @@ public class GeneralService {
         ProductCommentRequest productCommentRequest = new ProductCommentRequest();
         productCommentRequest.setComment(productComment.getComment());
         return productCommentRequest;
+    }
+    public Customer customerFromDTO(CustomerDTO customerDTO) {
+        Customer customer=new Customer();
+        customer.setId(customerDTO.getId());
+        customer.setFullname(customerDTO.getFullname());
+        customer.setUsername(customerDTO.getUsername());
+        customer.setPassword(customerDTO.getPassword());
+        customer.setRole("USER");
+
+        return customer;
+    }
+
+    public CustomerDTO dtoFromCustomer(Customer customer) {
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(customer.getId());
+        customerDTO.setFullname(customer.getFullname());
+        customerDTO.setUsername(customer.getUsername());
+        customerDTO.setPassword(customer.getPassword());
+
+        return customerDTO;
+    }
+
+    public Address addressFromDTO(AddressDTO addressDTO){
+        Address address=new Address();
+        address.setId(addressDTO.getId());
+        address.setRegion(addressDTO.getRegion());
+        address.setCity(addressDTO.getCity());
+        address.setStreet(addressDTO.getStreet());
+        address.setHouse(addressDTO.getHouse());
+
+        return address;
+    }
+
+    public AddressDTO dtoFromAddress(Address address) {
+        AddressDTO addressDTO = new AddressDTO();
+        addressDTO.setId(addressDTO.getId());
+        addressDTO.setRegion(addressDTO.getRegion());
+        addressDTO.setCity(addressDTO.getCity());
+        addressDTO.setHouse(addressDTO.getHouse());
+        addressDTO.setStreet(addressDTO.getStreet());
+
+        return addressDTO;
     }
 }
