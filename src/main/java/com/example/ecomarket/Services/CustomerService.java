@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CustomerService implements ICustomerService {
+public class CustomerService extends GeneralService implements ICustomerService {
     private final ICustomerRepository ICustomerRepository;
 
     @Autowired
@@ -66,25 +66,5 @@ public class CustomerService implements ICustomerService {
         ICustomerRepository.deleteById(id);
     }
 
-
-    public Customer customerFromDTO(CustomerDTO customerDTO) {
-        Customer customer=new Customer();
-        customer.setId(customerDTO.getId());
-        customer.setFullname(customerDTO.getFullname());
-        customer.setUsername(customerDTO.getUsername());
-        customer.setPassword(customerDTO.getPassword());
-        customer.setRole("USER");
-
-        return customer;
-    }
-
-    public CustomerDTO dtoFromCustomer(Customer customer) {
-        CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setId(customer.getId());
-        customerDTO.setFullname(customer.getFullname());
-        customerDTO.setUsername(customer.getUsername());
-        customerDTO.setPassword(customer.getPassword());
-
-        return customerDTO;
-    }
 }
+
