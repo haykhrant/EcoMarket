@@ -115,25 +115,5 @@ public class GeneralService {
         return customerDTO;
     }
 
-    public Address addressFromDTO(AddressDTO addressDTO){
-        Address address=new Address();
-        address.setId(addressDTO.getId());
-        address.setRegion(addressDTO.getRegion());
-        address.setCity(addressDTO.getCity());
-        address.setStreet(addressDTO.getStreet());
-        address.setHouse(addressDTO.getHouse());
 
-        return address;
-    }
-
-    public AddressDTO dtoFromAddress(Address address) {
-        AddressDTO addressDTO = new AddressDTO();
-        addressDTO.setId(addressDTO.getId());
-        addressDTO.setRegion(addressDTO.getRegion());
-        addressDTO.setCity(addressDTO.getCity());
-        addressDTO.setHouse(addressDTO.getHouse());
-        addressDTO.setStreet(addressDTO.getStreet());
-
-        return addressDTO;
-    }
 }
