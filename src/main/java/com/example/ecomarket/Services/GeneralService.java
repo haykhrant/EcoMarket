@@ -79,9 +79,10 @@ public class GeneralService {
         return productDescriptionRequest;
     }
 
-    protected ProductCommentRequest buildRequestFromProductComment(ProductComment productComment){
+    protected ProductCommentRequest buildRequestFromProductComment(ProductComment productComment,Long id){
         ProductCommentRequest productCommentRequest = new ProductCommentRequest();
         productCommentRequest.setComment(productComment.getComment());
+        productCommentRequest.setProductId(id);
         return productCommentRequest;
     }
 

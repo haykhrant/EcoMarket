@@ -59,7 +59,7 @@ public class ProductService extends GeneralService implements IProductService{
         return (ArrayList<ProductCommentRequest>) iProductCommentRepository
                 .findAllByProduct_Id(id)
                 .stream()
-                .map(each -> buildRequestFromProductComment(each))
+                .map(each -> buildRequestFromProductComment(each,id))
                 .collect(Collectors.toList());
     }
 
@@ -81,15 +81,46 @@ public class ProductService extends GeneralService implements IProductService{
     }
 
     @Override
+    public ArrayList<ProductDTO> getAllByProductTypeId(Long id){
+        return  (ArrayList<ProductDTO>)iProductRepository
+                .getAllByProductTypeId(id)
+                .stream()
+                .map(each -> buildDtoFromProduct(each))
+                .collect(Collectors.toList())
+                .stream()
+                .map(each -> {
+                    each.setProductDescriptionRequests(getProductDescriptions(each.getId()));
+                    each.setProductCommentRequests(getProductComments(each.getId()));
+                    return each;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public ArrayList<ProductDTO> getAllByCustomerId(Long id){
+        return  (ArrayList<ProductDTO>)iProductRepository
+                .getAllByCustomer_Id(id)
+                .stream()
+                .map(each -> buildDtoFromProduct(each))
+                .collect(Collectors.toList())
+                .stream()
+                .map(each -> {
+                    each.setProductDescriptionRequests(getProductDescriptions(each.getId()));
+                    each.setProductCommentRequests(getProductComments(each.getId()));
+                    return each;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public ProductDTO getById(Long id){
         return buildDtoFromProduct(iProductRepository.getById(id));
     }
 
     @Override
-    public ProductDTO comment(ProductComment productComment, ProductDTO dto){
-        productComment.setProduct(buildProductFromDto(dto));
-        iProductCommentRepository.save(productComment);
-        dto.setProductCommentRequests(getProductComments(dto.getId()));
-        return dto;
+    public ProductCommentRequest comment(ProductComment productComment, Long id){
+        Product product = iProductRepository.getById(id);
+        productComment.setProduct(product);
+        return buildRequestFromProductComment(iProductCommentRepository.save(productComment),id);
     }
 }
