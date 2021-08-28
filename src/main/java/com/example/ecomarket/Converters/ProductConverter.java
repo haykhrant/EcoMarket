@@ -34,7 +34,6 @@ public class ProductConverter {
         response.setProductTypeResponse(productTypeResponse);
         response.setCustomerResponse(customerResponse);
         response.setProductDescriptionRequestArrayList(dto.getProductDescriptionRequests());
-        response.setProductCommentRequestArrayList(dto.getProductCommentRequests());
         return response;
     }
 

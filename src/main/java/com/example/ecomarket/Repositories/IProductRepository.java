@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.ArrayList;
 
 public interface IProductRepository extends JpaRepository<Product,Long> {
+    ArrayList<Product> getAllByProductTypeId(Long id);
+    ArrayList<Product> getAllByCustomer_Id(Long id);
 }

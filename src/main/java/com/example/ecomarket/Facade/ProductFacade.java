@@ -67,12 +67,31 @@ public class ProductFacade {
                 .collect(Collectors.toList());
     }
 
-    public ProductResponse comment(ProductCommentRequest request)
+    public ArrayList<ProductResponse> getAllByProductTypeId(Long id){
+        return (ArrayList<ProductResponse>)iProductService.getAllByProductTypeId(id)
+                .stream()
+                .map(each -> productConverter.responseFromDTO(each,
+                        productTypeConverter.responseFromDTO(each.getProductTypeDTO()),
+                        customerConverter.buildResponseFromDTO(each.getCustomerDTO())))
+                .collect(Collectors.toList());
+    }
+
+    public ArrayList<ProductResponse> getAllByCustomerId(Long id){
+        return (ArrayList<ProductResponse>)iProductService.getAllByCustomerId(id)
+                .stream()
+                .map(each -> productConverter.responseFromDTO(each,
+                        productTypeConverter.responseFromDTO(each.getProductTypeDTO()),
+                        customerConverter.buildResponseFromDTO(each.getCustomerDTO())))
+                .collect(Collectors.toList());
+    }
+
+    public ProductCommentRequest comment(ProductCommentRequest request)
     {
         ProductComment productComment = productCommentConverter.productCommentFromRequest(request);
-        ProductDTO productDTO = iProductService.comment(productComment,iProductService.getById(request.getProductId()));
-        return productConverter.responseFromDTO(productDTO,
-                productTypeConverter.responseFromDTO(productDTO.getProductTypeDTO()),
-                customerConverter.buildResponseFromDTO(productDTO.getCustomerDTO()));
+        return iProductService.comment(productComment,request.getProductId());
+    }
+
+    public ArrayList<ProductCommentRequest> getComments(Long id){
+        return  iProductService.getProductComments(id);
     }
 }
