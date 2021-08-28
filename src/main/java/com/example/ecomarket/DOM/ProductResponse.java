@@ -15,6 +15,7 @@ public class ProductResponse {
     private String price;
     private Double rating;
     private ProductTypeResponse productTypeResponse;
+    private CustomerResponse customerResponse;
     private ArrayList<ProductDescriptionRequest> productDescriptionRequestArrayList;
     private ArrayList<ProductCommentRequest> productCommentRequestArrayList;
 
@@ -64,6 +65,14 @@ public class ProductResponse {
 
     public void setProductTypeResponse(ProductTypeResponse productTypeResponse) {
         this.productTypeResponse = productTypeResponse;
+    }
+
+    public CustomerResponse getCustomerResponse() {
+        return customerResponse;
+    }
+
+    public void setCustomerResponse(CustomerResponse customerResponse) {
+        this.customerResponse = customerResponse;
     }
 
     public ArrayList<ProductDescriptionRequest> getProductDescriptionRequestArrayList() {

@@ -1,5 +1,6 @@
 package com.example.ecomarket.Facade.DTO;
 
+import com.example.ecomarket.DOM.CustomerInfoResponse;
 import com.example.ecomarket.DOM.ProductCommentRequest;
 import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
@@ -16,7 +17,8 @@ public class ProductDTO {
     private String ownerComment;
     private String price;
     private Double rating;
-    private ProductTypeResponse productTypeResponse;
+    private ProductTypeDTO productTypeDTO;
+    private CustomerDTO customerDTO;
     private ArrayList<ProductDescriptionRequest> productDescriptionRequests;
     private ArrayList<ProductCommentRequest> productCommentRequests;
 
@@ -61,14 +63,6 @@ public class ProductDTO {
         this.rating = rating;
     }
 
-    public ProductTypeResponse getProductTypeResponse() {
-        return productTypeResponse;
-    }
-
-    public void setProductTypeResponse(ProductTypeResponse productTypeResponse) {
-        this.productTypeResponse = productTypeResponse;
-    }
-
     public ArrayList<ProductDescriptionRequest> getProductDescriptionRequests() {
         return productDescriptionRequests;
     }
@@ -83,5 +77,21 @@ public class ProductDTO {
 
     public void setProductCommentRequests(ArrayList<ProductCommentRequest> productCommentRequests) {
         this.productCommentRequests = productCommentRequests;
+    }
+
+    public ProductTypeDTO getProductTypeDTO() {
+        return productTypeDTO;
+    }
+
+    public void setProductTypeDTO(ProductTypeDTO productTypeDTO) {
+        this.productTypeDTO = productTypeDTO;
+    }
+
+    public CustomerDTO getCustomerDTO() {
+        return customerDTO;
+    }
+
+    public void setCustomerDTO(CustomerDTO customerDTO) {
+        this.customerDTO = customerDTO;
     }
 }

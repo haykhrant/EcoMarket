@@ -7,7 +7,7 @@ public class CustomerInfoDTO {
     private Long id;
     private String description;
     private Double rating;
-    private CustomerResponse customerResponse;
+    private CustomerDTO customerDTO;
     private AddressDTO addressDTO;
 
     //region Getters and Setters
@@ -36,14 +36,6 @@ public class CustomerInfoDTO {
         this.rating = rating;
     }
 
-    public CustomerResponse getCustomerResponse() {
-        return customerResponse;
-    }
-
-    public void setCustomerResponse(CustomerResponse customerResponse) {
-        this.customerResponse = customerResponse;
-    }
-
     public AddressDTO getAddressDTO() {
         return addressDTO;
     }
@@ -52,5 +44,12 @@ public class CustomerInfoDTO {
         this.addressDTO = addressDTO;
     }
 
+    public CustomerDTO getCustomerDTO() {
+        return customerDTO;
+    }
+
+    public void setCustomerDTO(CustomerDTO customerDTO) {
+        this.customerDTO = customerDTO;
+    }
     //endregion
 }
