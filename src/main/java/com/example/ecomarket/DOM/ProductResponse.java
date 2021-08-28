@@ -17,7 +17,6 @@ public class ProductResponse {
     private ProductTypeResponse productTypeResponse;
     private CustomerResponse customerResponse;
     private ArrayList<ProductDescriptionRequest> productDescriptionRequestArrayList;
-    private ArrayList<ProductCommentRequest> productCommentRequestArrayList;
 
     public Long getId() {
         return id;
@@ -83,11 +82,4 @@ public class ProductResponse {
         this.productDescriptionRequestArrayList = productDescriptionRequestArrayList;
     }
 
-    public ArrayList<ProductCommentRequest> getProductCommentRequestArrayList() {
-        return productCommentRequestArrayList;
-    }
-
-    public void setProductCommentRequestArrayList(ArrayList<ProductCommentRequest> productCommentRequestArrayList) {
-        this.productCommentRequestArrayList = productCommentRequestArrayList;
-    }
 }

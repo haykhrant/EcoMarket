@@ -16,7 +16,11 @@ public interface IProductService {
 
     ArrayList<ProductDTO> getAll();
 
+    ArrayList<ProductDTO> getAllByProductTypeId(Long id);
+
+    ArrayList<ProductDTO> getAllByCustomerId(Long id);
+
     ProductDTO getById(Long id);
 
-    ProductDTO comment(ProductComment productComment, ProductDTO dto);
+    ProductCommentRequest comment(ProductComment productComment, Long id);
 }
