@@ -27,8 +27,8 @@ public class Product {
     private ProductType productType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="customer_info_id",nullable = false)
-    private CustomerInfo customerInfo;
+    @JoinColumn(name="customer_id",nullable = false)
+    private Customer customer;
 
     public Long getId() {
         return id;
@@ -78,11 +78,11 @@ public class Product {
         this.productType = productType;
     }
 
-    public CustomerInfo getCustomerInfo() {
-        return customerInfo;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerInfo(CustomerInfo customerInfo) {
-        this.customerInfo = customerInfo;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

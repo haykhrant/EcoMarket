@@ -30,6 +30,7 @@ public class ProductService extends GeneralService implements IProductService{
     public ProductDTO create(ProductDTO dto)
     {
         Product product = iProductRepository.save(buildProductFromDto(dto));
+        ProductDTO productDTO = buildDtoFromProduct(product);
         iProductDescriptionRepository.saveAll(dto.getProductDescriptionRequests()
                 .stream()
                 .map(each ->{
@@ -38,7 +39,8 @@ public class ProductService extends GeneralService implements IProductService{
                     return productDescription;
                 })
                 .collect(Collectors.toList()));
-        return buildDtoFromProduct(product);
+        productDTO.setProductDescriptionRequests(dto.getProductDescriptionRequests());
+        return productDTO;
     }
 
     @Override

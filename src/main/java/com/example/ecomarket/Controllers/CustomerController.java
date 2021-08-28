@@ -17,7 +17,6 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "*" )
 public class CustomerController
 {
-
     private final CustomerFacade customerFacade;
 
     @Autowired

@@ -11,7 +11,8 @@ public class ProductRequest {
     private String name;
     private String ownerComment;
     private String price;
-    private ProductTypeResponse productTypeResponse;
+    private Long productTypeId;
+    private Long customerId;
     private ArrayList<ProductDescriptionRequest> descriptionRequests;
 
     public String getName() {
@@ -38,12 +39,20 @@ public class ProductRequest {
         this.price = price;
     }
 
-    public ProductTypeResponse getProductTypeResponse() {
-        return productTypeResponse;
+    public Long getProductTypeId() {
+        return productTypeId;
     }
 
-    public void setProductTypeResponse(ProductTypeResponse productTypeResponse) {
-        this.productTypeResponse = productTypeResponse;
+    public void setProductTypeId(Long productTypeId) {
+        this.productTypeId = productTypeId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public ArrayList<ProductDescriptionRequest> getDescriptionRequests() {
@@ -53,4 +62,5 @@ public class ProductRequest {
     public void setDescriptionRequests(ArrayList<ProductDescriptionRequest> descriptionRequests) {
         this.descriptionRequests = descriptionRequests;
     }
+
 }

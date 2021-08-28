@@ -1,5 +1,7 @@
 package com.example.ecomarket.Services;
 
+import com.example.ecomarket.Converters.CustomerConverter;
+import com.example.ecomarket.Converters.CustomerInfoConverter;
 import com.example.ecomarket.DOM.ProductCommentRequest;
 import com.example.ecomarket.DOM.ProductDescriptionRequest;
 import com.example.ecomarket.DOM.ProductTypeResponse;
@@ -26,15 +28,9 @@ public class GeneralService {
 
     protected ProductType buildProductTypeFromDto(ProductTypeDTO dto) {
         ProductType productType = new ProductType();
+        productType.setId(dto.getId());
         productType.setName(dto.getProductTypeName());
         productType.setCategory(buildCategoryFromDto(dto.getCategoryDTO()));
-        return productType;
-    }
-
-    protected ProductType buildProductTypeFromDtoByCategory(ProductTypeDTO productTypeDTO,CategoryDTO categoryDTO)
-    {
-        ProductType productType = buildProductTypeFromDto(productTypeDTO);
-        productType.setCategory(buildCategoryFromDto(categoryDTO));
         return productType;
     }
 
@@ -48,32 +44,26 @@ public class GeneralService {
 
     protected Product buildProductFromDto(ProductDTO productDTO)
     {
-        ProductType productType = new ProductType();
-        productType.setId(productDTO.getProductTypeResponse().getId());
-        productType.setName(productDTO.getProductTypeResponse().getProductTypeName());
-
         Product product = new Product();
         product.setName(productDTO.getName());
         product.setOwnerComment(productDTO.getOwnerComment());
         product.setPrice(productDTO.getPrice());
         product.setRating(productDTO.getRating());
-        product.setProductType(productType);
+        product.setProductType(buildProductTypeFromDto(productDTO.getProductTypeDTO()));
+        product.setCustomer(customerFromDTO(productDTO.getCustomerDTO()));
         return product;
     }
 
     protected ProductDTO buildDtoFromProduct(Product product)
     {
-        ProductTypeResponse productTypeResponse = new ProductTypeResponse();
-        productTypeResponse.setId(product.getId());
-        productTypeResponse.setProductTypeName(product.getName());
-
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());
         productDTO.setOwnerComment(product.getOwnerComment());
         productDTO.setPrice(product.getPrice());
         productDTO.setRating(product.getRating());
-        productDTO.setProductTypeResponse(productTypeResponse);
+        productDTO.setProductTypeDTO(buildDtoFromProductType(product.getProductType()));
+        productDTO.setCustomerDTO(dtoFromCustomer(product.getCustomer()));
         return productDTO;
     }
 
@@ -94,7 +84,8 @@ public class GeneralService {
         productCommentRequest.setComment(productComment.getComment());
         return productCommentRequest;
     }
-    public Customer customerFromDTO(CustomerDTO customerDTO) {
+
+    protected Customer customerFromDTO(CustomerDTO customerDTO) {
         Customer customer=new Customer();
         customer.setId(customerDTO.getId());
         customer.setFullname(customerDTO.getFullname());
@@ -105,7 +96,7 @@ public class GeneralService {
         return customer;
     }
 
-    public CustomerDTO dtoFromCustomer(Customer customer) {
+    protected CustomerDTO dtoFromCustomer(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setId(customer.getId());
         customerDTO.setFullname(customer.getFullname());
@@ -115,7 +106,29 @@ public class GeneralService {
         return customerDTO;
     }
 
-    public Address addressFromDTO(AddressDTO addressDTO){
+    protected  CustomerInfo customerInfoFromDTO(CustomerInfoDTO customerInfoDTO){
+
+        CustomerInfo customerInfo = new CustomerInfo();
+        customerInfo.setDescription(customerInfoDTO.getDescription());
+        customerInfo.setCustomer(customerFromDTO(customerInfoDTO.getCustomerDTO()));
+        customerInfo.setAdress(addressFromDTO(customerInfoDTO.getAddressDTO()));
+        customerInfo.setRating(customerInfoDTO.getRating());
+        customerInfo.setId(customerInfo.getId());
+        return customerInfo;
+    }
+
+    protected  CustomerInfoDTO dtoFromCustomerInfo(CustomerInfo customerInfo){
+        CustomerInfoDTO customerInfoDTO = new CustomerInfoDTO();
+        customerInfoDTO.setCustomerDTO(dtoFromCustomer(customerInfo.getCustomer()));
+        customerInfoDTO.setRating(customerInfo.getRating());
+        customerInfoDTO.setAddressDTO(dtoFromAddress(customerInfo.getAddress()));
+        customerInfoDTO.setId(customerInfo.getId());
+        customerInfoDTO.setDescription(customerInfo.getDescription());
+
+        return customerInfoDTO;
+    }
+
+    protected Address addressFromDTO(AddressDTO addressDTO){
         Address address=new Address();
         address.setId(addressDTO.getId());
         address.setRegion(addressDTO.getRegion());
@@ -126,7 +139,7 @@ public class GeneralService {
         return address;
     }
 
-    public AddressDTO dtoFromAddress(Address address) {
+    protected AddressDTO dtoFromAddress(Address address) {
         AddressDTO addressDTO = new AddressDTO();
         addressDTO.setId(addressDTO.getId());
         addressDTO.setRegion(addressDTO.getRegion());
