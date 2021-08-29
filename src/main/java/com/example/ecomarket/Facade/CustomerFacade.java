@@ -1,10 +1,14 @@
 package com.example.ecomarket.Facade;
 
+import com.example.ecomarket.Converters.BasketConverter;
 import com.example.ecomarket.Converters.CustomerConverter;
+import com.example.ecomarket.DOM.BasketRequest;
 import com.example.ecomarket.DOM.CustomerRequest;
 import com.example.ecomarket.DOM.CustomerResponse;
 import com.example.ecomarket.Facade.DTO.CustomerDTO;
+import com.example.ecomarket.Services.BasketService;
 import com.example.ecomarket.Services.CustomerService;
+import com.example.ecomarket.Services.IBasketService;
 import com.example.ecomarket.anotations.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,11 +20,16 @@ import java.util.stream.Collectors;
 public class CustomerFacade {
     private final CustomerService customerService;
     private final CustomerConverter customerConverter;
+    private final BasketConverter basketConverter;
+    private final IBasketService iBasketService;
 
     @Autowired
-    public CustomerFacade(CustomerService customerService, CustomerConverter customerConverter) {
+    public CustomerFacade(CustomerService customerService, CustomerConverter customerConverter,
+                          BasketConverter basketConverter, IBasketService iBasketService) {
         this.customerService = customerService;
         this.customerConverter = customerConverter;
+        this.basketConverter = basketConverter;
+        this.iBasketService = iBasketService;
     }
 
 

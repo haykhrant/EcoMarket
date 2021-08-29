@@ -88,7 +88,6 @@ public class GeneralService {
 
     protected Customer customerFromDTO(CustomerDTO customerDTO) {
         Customer customer=new Customer();
-        customer.setId(customerDTO.getId());
         customer.setFullname(customerDTO.getFullname());
         customer.setUsername(customerDTO.getUsername());
         customer.setPassword(customerDTO.getPassword());
@@ -114,7 +113,6 @@ public class GeneralService {
         customerInfo.setCustomer(customerFromDTO(customerInfoDTO.getCustomerDTO()));
         customerInfo.setAdress(addressFromDTO(customerInfoDTO.getAddressDTO()));
         customerInfo.setRating(customerInfoDTO.getRating());
-        customerInfo.setId(customerInfo.getId());
         return customerInfo;
     }
 
@@ -131,7 +129,6 @@ public class GeneralService {
 
     protected Address addressFromDTO(AddressDTO addressDTO){
         Address address=new Address();
-        address.setId(addressDTO.getId());
         address.setRegion(addressDTO.getRegion());
         address.setCity(addressDTO.getCity());
         address.setStreet(addressDTO.getStreet());
@@ -149,5 +146,19 @@ public class GeneralService {
         addressDTO.setStreet(addressDTO.getStreet());
 
         return addressDTO;
+    }
+
+    protected Basket basketFromDTO(BasketDTO basketDTO,Customer customer){
+
+        Basket basket = new Basket();
+        basket.setCustomer(customer);
+        return basket;
+    }
+
+    protected BasketDTO dtoFromBasket(Basket basket){
+        BasketDTO basketDTO = new BasketDTO();
+        basketDTO.setId(basket.getId());
+        basketDTO.setCustomerDTO(dtoFromCustomer(basket.getCustomer()));
+        return basketDTO;
     }
 }
