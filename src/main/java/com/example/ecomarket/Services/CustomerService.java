@@ -2,7 +2,9 @@ package com.example.ecomarket.Services;
 
 
 import com.example.ecomarket.Facade.DTO.CustomerDTO;
+import com.example.ecomarket.Models.Basket;
 import com.example.ecomarket.Models.Customer;
+import com.example.ecomarket.Repositories.IBasketRepository;
 import com.example.ecomarket.Repositories.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +17,21 @@ import java.util.stream.Collectors;
 public class CustomerService extends GeneralService implements ICustomerService {
 
     private final ICustomerRepository ICustomerRepository;
+    private final IBasketRepository iBasketRepository;
 
     @Autowired
-    public CustomerService(ICustomerRepository iCustomerRepository) {
+    public CustomerService(ICustomerRepository iCustomerRepository,IBasketRepository iBasketRepository) {
         this.ICustomerRepository = iCustomerRepository;
+        this.iBasketRepository = iBasketRepository;
     }
-
-
 
     @Override
     public CustomerDTO create(CustomerDTO dto) {
         Customer customer = customerFromDTO(dto);
         Customer saved = ICustomerRepository.save(customer);
+        Basket basket = new Basket();
+        basket.setCustomer(saved);
+        iBasketRepository.save(basket);
         return dtoFromCustomer(saved);
     }
 
