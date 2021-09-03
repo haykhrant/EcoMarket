@@ -1,5 +1,6 @@
 package com.example.ecomarket.Facade;
 
+import com.example.ecomarket.Config.CustomerDetails;
 import com.example.ecomarket.Converters.BasketConverter;
 import com.example.ecomarket.Converters.CustomerConverter;
 import com.example.ecomarket.DOM.BasketRequest;
@@ -11,6 +12,7 @@ import com.example.ecomarket.Services.CustomerService;
 import com.example.ecomarket.Services.IBasketService;
 import com.example.ecomarket.anotations.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +78,11 @@ public class CustomerFacade {
 
     public void deleteById(Long id) {
         customerService.deleteById(id);
+    }
+
+    public Long getIdByAuthentication(Authentication authentication) {
+        CustomerDetails customerDetails = (CustomerDetails) authentication.getPrincipal();
+        return customerDetails.getId();
     }
 
 }

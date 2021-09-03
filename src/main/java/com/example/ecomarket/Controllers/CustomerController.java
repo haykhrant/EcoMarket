@@ -3,9 +3,7 @@ package com.example.ecomarket.Controllers;
 import com.example.ecomarket.DOM.CustomerRequest;
 import com.example.ecomarket.DOM.CustomerResponse;
 import com.example.ecomarket.Facade.CustomerFacade;
-import com.example.ecomarket.Services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +20,6 @@ public class CustomerController
     @Autowired
     public CustomerController(CustomerFacade customerFacade) {
         this.customerFacade = customerFacade;
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<CustomerResponse> create(@RequestBody CustomerRequest requestModel) {
-        CustomerResponse saved = customerFacade.create(requestModel);
-        return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/person/{id}")
