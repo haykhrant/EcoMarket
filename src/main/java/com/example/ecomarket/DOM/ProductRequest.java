@@ -11,8 +11,8 @@ public class ProductRequest {
     private String name;
     private String ownerComment;
     private String price;
-    private Long productTypeId;
-    private Long customerId;
+    private Long   productTypeId;
+    private Long   customerId;
     private ArrayList<ProductDescriptionRequest> descriptionRequests;
 
     public String getName() {
