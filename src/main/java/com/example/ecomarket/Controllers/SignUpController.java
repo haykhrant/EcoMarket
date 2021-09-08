@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Component
 @RestController
-@CrossOrigin(origins = "*" , allowedHeaders = "*")
+//@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class SignUpController {
 
     private final CustomerFacade customerFacade;
