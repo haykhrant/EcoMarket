@@ -5,14 +5,11 @@ import com.example.ecomarket.DOM.CustomerResponse;
 import com.example.ecomarket.Facade.CustomerFacade;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @Component
 @RestController
-//@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class SignUpController {
 
     private final CustomerFacade customerFacade;
