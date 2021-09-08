@@ -1,9 +1,7 @@
 package com.example.ecomarket.Controllers;
 
 import com.example.ecomarket.DOM.*;
-import com.example.ecomarket.Facade.CategoryFacade;
 import com.example.ecomarket.Facade.ProductFacade;
-import com.example.ecomarket.Models.ProductComment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 
 @Component
 @RestController
-//@CrossOrigin(origins = "*" )
 public class ProductController {
     private final ProductFacade productFacade;
 

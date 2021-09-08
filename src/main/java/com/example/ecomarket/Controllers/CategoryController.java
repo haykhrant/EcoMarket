@@ -5,18 +5,13 @@ import com.example.ecomarket.DOM.CategoryRequest;
 import com.example.ecomarket.DOM.CategoryResponse;
 import com.example.ecomarket.DOM.ProductTypeResponse;
 import com.example.ecomarket.Facade.CategoryFacade;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.security.PermitAll;
 import java.util.ArrayList;
 
 @Component
 @RestController
-//@CrossOrigin(origins = "*" )
 public class CategoryController {
 
 
