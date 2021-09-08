@@ -49,16 +49,29 @@ public class SequrityConfiguration  extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //http
+        //        .csrf().disable()
+        //        .sessionManagement()
+        //        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        //        .and()
+        //        .formLogin().disable()
+        //        .authorizeRequests()
+        //        .antMatchers("/secure","/admin").hasAnyAuthority("")
+        //        .antMatchers("/login").authenticated()
+        //        .and().httpBasic();
         http
-                .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
                 .authorizeRequests()
-                .antMatchers("/secure","/admin").hasAnyAuthority("")
-                .antMatchers("/login").authenticated()
-                .and().httpBasic();
+                .antMatchers("/secure","/admin")
+                .authenticated()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf()
+                .disable();
     }
 
     @Bean

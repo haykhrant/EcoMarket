@@ -102,7 +102,7 @@ public class GeneralService {
         customerDTO.setFullname(customer.getFullname());
         customerDTO.setUsername(customer.getUsername());
         customerDTO.setPassword(customer.getPassword());
-
+        customerDTO.setRole(customer.getRole());
         return customerDTO;
     }
 
