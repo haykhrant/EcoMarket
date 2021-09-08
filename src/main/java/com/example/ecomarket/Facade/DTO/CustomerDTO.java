@@ -15,7 +15,15 @@ public class CustomerDTO {
 
     private String role;
 
+    public CustomerDTO() {}
 
+    public CustomerDTO(Long id, String fullname, String username, String password, String role) {
+        this.id = id;
+        this.fullname = fullname;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     //region Getters and Setters
 
