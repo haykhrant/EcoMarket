@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @Component
 @RestController
-@CrossOrigin(origins = "*" )
+//@CrossOrigin(origins = "*" )
 public class ProductController {
     private final ProductFacade productFacade;
 
