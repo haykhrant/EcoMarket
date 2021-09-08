@@ -9,10 +9,10 @@ import java.util.List;
 
 public class CustomerDetails implements UserDetails {
 
+    private Long id;
     private String username;
     private String password;
     private String role;
-    private Long id;
 
     public CustomerDetails(Long id, String username, String password, String role) {
         this.id = id;

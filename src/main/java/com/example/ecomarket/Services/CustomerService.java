@@ -38,7 +38,13 @@ public class CustomerService extends GeneralService implements ICustomerService 
     @Override
     public  CustomerDTO findCustomerByUsername(String username) {
         Customer byUsername = ICustomerRepository.findCustomerByUsername(username);
-        return dtoFromCustomer(byUsername);
+        CustomerDTO customerDTO = new CustomerDTO(
+                byUsername.getId(),
+                byUsername.getFullname(),
+                byUsername.getUsername(),
+                byUsername.getPassword(),
+                byUsername.getRole());
+        return customerDTO;
     }
 
     @Override
